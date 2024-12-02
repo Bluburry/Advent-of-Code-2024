@@ -1,5 +1,5 @@
-#ifndef _AOC_DAY_HPP
-#define _AOC_DAY_HPP
+#ifndef _AOC_DAY1_HPP
+#define _AOC_DAY1_HPP
 
 #include <iostream>
 #include <fstream>

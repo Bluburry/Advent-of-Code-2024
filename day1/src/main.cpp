@@ -5,7 +5,7 @@ int main(int argc, char **argv)
 	if (argc != 2)
 		return 1;
 
-	cout << argv[1] << endl;
+	// cout << argv[1] << endl;
 
 	vector<int> list1, list2;
 

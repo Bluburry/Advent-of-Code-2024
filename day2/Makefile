@@ -2,8 +2,9 @@
 C				= c++
 DEPENDENCIES	= include
 RM				= rm -rf
-NAME			= aoc1
-FILE_NAME		= lists.txt
+NAME			= aoc2
+FILE_NAME		= reports_test.txt
+# FILE_NAME		= reports.txt
 CFLAGS			= -W -Wall -Werror -Wextra -pedantic -g -I $(DEPENDENCIES)
 VG				= valgrind --leak-check=full -s --track-origins=yes #--log-file=leaks.log
 
@@ -17,7 +18,7 @@ OBJ_DIR		= obj/
 vpath %.cpp src $(PATHS)
 
 # FILES
-SRCS		= main list_parser list_get_difference list_get_similarity
+SRCS		= main reports_parser reports_safety
 OBJS		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCS)))
 OBJS_FILES	= .tst
 
@@ -43,7 +44,7 @@ fclean : clean
 re : fclean all
 
 leaks : all
-	@$(VG) ./$(NAME) $(FILE_NAME)
+	@$(VG) ./$(NAME) ${FILE_NAME}
 
 debug : all
 	@gdb -tui $(NAME)
@@ -51,7 +52,7 @@ debug : all
 run : all
 	@./$(NAME) ${FILE_NAME}
 
-.SILENT:
+# .SILENT:
 
 .PHONY : all, clean, fclean, re, leaks, debug, run
 
