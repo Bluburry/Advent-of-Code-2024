@@ -10,6 +10,7 @@
 using namespace std;
 
 vector<vector<int>> reports_parse(char *fl);
-int reports_safety(vector<vector<int>> &reports);
+int reports_safety_v1(vector<vector<int>> &reports);
+int reports_safety_v2(vector<vector<int>> &reports);
 
 #endif 
