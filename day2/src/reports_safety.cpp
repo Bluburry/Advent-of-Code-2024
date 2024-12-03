@@ -37,14 +37,29 @@ int reports_safety_v1(vector<vector<int>> &reports)
 	return safety_count;
 }
 
-bool remove_start_logic(vector<int> &report)
+bool start_logic(vector<int> &report, bool incremental, bool tolerance)
 {
+	if (report.at(1) == report.at(0))
+	{
+		tolerance = true;
+		report.erase(report.begin());
+	}
+	if (report.at(1) > report.at(0) && report.at(2) > report.at(1))
+	{
+		incremental = true;
+		return true;
+	}
+	else if (report.at(1) < report.at(0) && report.at(2) < report.at(1))
+	{
+		incremental = false;
+		return true;
+	}
 
+	return true;
 }
 
-bool remove_middle_logic(vector<int> &report)
+bool middle_logic(vector<int> &report, bool incremental, bool tolerance)
 {
-
 }
 
 int reports_safety_v2(vector<vector<int>> &reports)
@@ -54,9 +69,14 @@ int reports_safety_v2(vector<vector<int>> &reports)
 
 	for (vector<int> report : reports)
 	{
+		tolerance = false;
 
-		if (safe)
-			safety_count++;
+		if (!start_logic(report, &incremental, &tolerance))
+			continue;
+		if (!middle_logic(report, incremental, tolerance))
+			continue;
+
+		safety_count++;
 	}
 
 	return safety_count;
