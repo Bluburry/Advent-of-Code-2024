@@ -18,7 +18,8 @@ int main(int argc, char **argv)
 	} */
 
 	cout << "Safety level 1 (puzzle 1): " << reports_safety_v1(reports) << endl;
-	cout << "Safety level 2 (puzzle 2): " << reports_safety_v2(reports) << endl;
+	// cout << "Safety level 2 (puzzle 2): " << reports_safety_v2(reports) << endl;
+	cout << reports_safety_v2(reports) << endl;
 
 	return 0;
 }
