@@ -3,8 +3,8 @@ C				= c++
 DEPENDENCIES	= include
 RM				= rm -rf
 NAME			= aoc2
-# FILE_NAME		= reports_test.txt
-FILE_NAME		= reports.txt
+FILE_NAME		= reports_test.txt
+# FILE_NAME		= reports.txt
 CFLAGS			= -W -Wall -Werror -Wextra -pedantic -g -I $(DEPENDENCIES)
 VG				= valgrind --leak-check=full -s --track-origins=yes #--log-file=leaks.log
 
@@ -47,7 +47,7 @@ leaks : all
 	@$(VG) ./$(NAME) ${FILE_NAME}
 
 debug : all
-	@gdb -tui $(NAME)
+	@gdb -tui $(NAME) --args ${FILE_NAME}
 
 run : all
 	@./$(NAME) ${FILE_NAME}

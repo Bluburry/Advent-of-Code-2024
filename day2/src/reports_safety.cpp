@@ -37,45 +37,163 @@ int reports_safety_v1(vector<vector<int>> &reports)
 	return safety_count;
 }
 
-bool start_logic(vector<int> &report, bool incremental, bool tolerance)
+bool start_logic(vector<int> &report, bool &incremental, bool &tolerance)
 {
+	tolerance = false;
+
 	if (report.at(1) == report.at(0))
 	{
 		tolerance = true;
 		report.erase(report.begin());
 	}
-	if (report.at(1) > report.at(0) && report.at(2) > report.at(1))
+
+	if (report.at(1) > report.at(0))
 	{
-		incremental = true;
-		return true;
+		if (report.at(2) == report.at(1) && report.at(3) < report.at(1))
+			return false;
+		else if (report.at(2) == report.at(1) && !tolerance)
+		{
+			report.erase(report.begin() + 1);
+			tolerance = true;
+		}
+
+		if (report.at(2) > report.at(1))
+		{
+			incremental = true;
+			return true;
+		}
+		else if (tolerance)
+			return false;
+		else if (report.at(2) < report.at(1))
+		{
+			if (report.at(2) > report.at(0))
+			{
+				report.erase(report.begin() + 1);
+				tolerance = true;
+				incremental = true;
+				return true;
+			}
+			else if (report.at(2) < report.at(0))
+			{
+				report.erase(report.begin() + 1);
+				tolerance = true;
+				incremental = false;
+				return true;
+			}
+		}
 	}
 	else if (report.at(1) < report.at(0) && report.at(2) < report.at(1))
 	{
-		incremental = false;
-		return true;
+		if (report.at(2) == report.at(1) && report.at(3) > report.at(1))
+			return false;
+		else if (report.at(2) == report.at(1) && !tolerance)
+		{
+			report.erase(report.begin() + 1);
+			tolerance = true;
+		}
+
+		if (report.at(2) < report.at(1))
+		{
+			incremental = false;
+			return true;
+		}
+		else if (tolerance)
+			return false;
+		else if (report.at(2) > report.at(1))
+		{
+			if (report.at(2) < report.at(0))
+			{
+				report.erase(report.begin() + 1);
+				tolerance = true;
+				incremental = false;
+				return true;
+			}
+			else if (report.at(2) > report.at(0))
+			{
+				report.erase(report.begin() + 1);
+				tolerance = true;
+				incremental = true;
+				return true;
+			}
+		}
 	}
 
-	return true;
+	return false;
 }
 
 bool middle_logic(vector<int> &report, bool incremental, bool tolerance)
 {
+	for (int i = 0; i < (int)report.size() - 1; i++)
+	{
+		if (incremental &&
+			(report.at(i + 1) - report.at(i) <= 0 ||
+			 report.at(i + 1) - report.at(i) > 3))
+		{
+			if (tolerance)
+				return false;
+			else
+			{
+				tolerance = true;
+				if (i > 0 && report.at(i + 1) - report.at(i - 1) > 0 &&
+					report.at(i + 1) - report.at(i - 1) <= 3)
+					report.erase(report.begin() + i);
+				else
+					report.erase(report.begin() + i + 1);
+			}
+		}
+		else if (!incremental &&
+				 (report.at(i + 1) - report.at(i) >= 0 ||
+				  report.at(i + 1) - report.at(i) < -3))
+		{
+			if (tolerance)
+				return false;
+			else
+			{
+				tolerance = true;
+				if (i > 0 && report.at(i + 1) - report.at(i - 1) < 0 &&
+					report.at(i + 1) - report.at(i - 1) >= -3)
+					report.erase(report.begin() + i);
+				else
+					report.erase(report.begin() + i + 1);
+			}
+		}
+	}
+	return true;
 }
 
 int reports_safety_v2(vector<vector<int>> &reports)
 {
 	int safety_count = 0;
-	bool incremental, safe, tolerance;
+	bool incremental, tolerance;
 
 	for (vector<int> report : reports)
 	{
 		tolerance = false;
 
-		if (!start_logic(report, &incremental, &tolerance))
-			continue;
-		if (!middle_logic(report, incremental, tolerance))
-			continue;
+		cout << RED;
 
+		if (!start_logic(report, incremental, tolerance))
+		{
+			cout << "failed in start logic" << endl;
+			for (int i = 0; i < (int)report.size(); i++)
+				cout << report.at(i) << " ";
+			cout << endl;
+			continue;
+		}
+		if (!middle_logic(report, incremental, tolerance))
+		{
+			cout << "failed in middle logic" << endl;
+			for (int i = 0; i < (int)report.size(); i++)
+				cout << report.at(i) << " ";
+			cout << endl;
+			continue;
+		}
+
+		cout << GREEN;
+		for (int i = 0; i < (int)report.size(); i++)
+			cout << report.at(i) << " ";
+
+		cout << endl;
 		safety_count++;
 	}
 
