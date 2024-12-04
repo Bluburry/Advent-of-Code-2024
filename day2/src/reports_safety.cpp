@@ -64,6 +64,7 @@ bool start_logic(vector<int> &report, bool &incremental, bool &tolerance)
 		}
 		else if (tolerance)
 			return false;
+		// need to go int the 4th slot to check
 		else if (report.at(2) < report.at(1))
 		{
 			if (report.at(2) > report.at(0))
@@ -75,14 +76,14 @@ bool start_logic(vector<int> &report, bool &incremental, bool &tolerance)
 			}
 			else if (report.at(2) < report.at(0))
 			{
-				report.erase(report.begin() + 1);
+				report.erase(report.begin() + 2);
 				tolerance = true;
-				incremental = false;
+				incremental = true;
 				return true;
 			}
 		}
 	}
-	else if (report.at(1) < report.at(0) && report.at(2) < report.at(1))
+	else if (report.at(1) < report.at(0))
 	{
 		if (report.at(2) == report.at(1) && report.at(3) > report.at(1))
 			return false;
@@ -110,9 +111,9 @@ bool start_logic(vector<int> &report, bool &incremental, bool &tolerance)
 			}
 			else if (report.at(2) > report.at(0))
 			{
-				report.erase(report.begin() + 1);
+				report.erase(report.begin() + 2);
 				tolerance = true;
-				incremental = true;
+				incremental = false;
 				return true;
 			}
 		}
@@ -182,7 +183,9 @@ int reports_safety_v2(vector<vector<int>> &reports)
 		}
 		if (!middle_logic(report, incremental, tolerance))
 		{
+			cout << boolalpha;
 			cout << "failed in middle logic" << endl;
+			cout << "tolerance: " << tolerance << ", incremental: " << incremental << endl;
 			for (int i = 0; i < (int)report.size(); i++)
 				cout << report.at(i) << " ";
 			cout << endl;
