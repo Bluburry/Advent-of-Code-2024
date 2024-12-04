@@ -20,5 +20,6 @@ using namespace std;
 vector<vector<int>> reports_parse(char *fl);
 int reports_safety_v1(vector<vector<int>> &reports);
 int reports_safety_v2(vector<vector<int>> &reports);
+int report_safety_bruteforce(vector<vector<int>> &reports);
 
 #endif 
