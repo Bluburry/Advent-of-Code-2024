@@ -7,7 +7,9 @@ int main(int argc, char **argv)
 
 	vector<string> xmas = words_parse(argv[1]);
 
-	cout << xmas_search(xmas) << endl;
+	cout << GREEN << "Day 4 (puzzle 1): " << xmas_search(xmas) << endl;
+
+	cout << "Day 4 (puzzle 2): " << xmas_search_v2(xmas) << RESET << endl;
 
 	return 0;
 }

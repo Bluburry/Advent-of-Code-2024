@@ -19,5 +19,6 @@ using namespace std;
 
 vector<string> words_parse(char *fl);
 int xmas_search(vector<string> &words);
+int xmas_search_v2(vector<string> &words);
 
 #endif 
