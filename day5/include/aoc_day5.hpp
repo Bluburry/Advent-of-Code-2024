@@ -19,7 +19,8 @@ using namespace std;
 
 vector<string> pages_parse(char *fl);
 void update_parse(vector<string> &manual, vector<vector<int>> &rules, vector<vector<int>> &pages);
+void update_parse_v2(vector<string> &manual, vector<vector<int>> &rules, vector<vector<int>> &pages, vector<vector<int>> &rules_v2);
 int rules_check(vector<vector<int>> &rules, vector<vector<int>> &update_pages);
-int rules_check_v2(vector<vector<int>> &rules, vector<vector<int>> &update_pages);
+int rules_check_v2(vector<vector<int>> &rules_v2, vector<vector<int>> &update_pages);
 
 #endif 
