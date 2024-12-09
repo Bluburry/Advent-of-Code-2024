@@ -18,7 +18,7 @@ OBJ_DIR		= obj/
 vpath %.cpp src $(PATHS)
 
 # FILES
-SRCS		= main map_parse
+SRCS		= main map_parse guard_movement
 OBJS		= $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRCS)))
 OBJS_FILES	= .tst
 

@@ -7,10 +7,20 @@ int main(int argc, char **argv)
 
 	vector<string> helper = map_helper(argv[1]);
 	char **map = map_parse(helper);
+	int size_i = (int)helper.size(), size_j = (int)helper.at(0).size();
 
-	
+	cout << "Advent day 6 (puzzle 1): " << GREEN << guard_movement(map, size_i, size_j) << RESET << endl;
 
-	for (int i = 0; i < (int)helper.size(); i++)
+	for (int i = 0; i < size_i; i++)
+	{
+		for (int j = 0; j < size_j; j++)
+		{
+			cout << map[i][j];
+		}
+		cout << endl;
+	}
+
+	for (int i = 0; i < size_i; i++)
 		delete[] map[i];
 
 	delete[] map;

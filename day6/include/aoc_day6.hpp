@@ -19,5 +19,6 @@ using namespace std;
 
 vector<string> map_helper(char *fl);
 char **map_parse(vector<string> &helper);
+int guard_movement(char **map, int size_i, int size_j);
 
 #endif 
