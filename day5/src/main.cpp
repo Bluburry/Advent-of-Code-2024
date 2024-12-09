@@ -11,8 +11,8 @@ int main(int argc, char **argv)
 
 	update_parse_v2(lines, rules, pages, rules_v2);
 
-	cout << rules_check(rules_v2, pages) << endl;
-	cout << rules_check_v2(rules_v2, pages) << endl;
+	cout << "Advent of code day 5 (puzzle 1): " << GREEN << rules_check(rules_v2, pages) << RESET << endl;
+	cout << "Advent of code day 5 (puzzle 1): " << GREEN << rules_check_v2(rules_v2, pages) << RESET << endl;
 
 	return 0;
 }

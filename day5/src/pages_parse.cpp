@@ -97,6 +97,8 @@ void update_parse_v2(vector<string> &manual, vector<vector<int>> &rules, vector<
 		rules_v2.push_back(aux_vec);
 	}
 
+	// sort(rules_v2.begin(), rules_v2.end(), [](const vector<int> &a, const vector<int> &b)
+		 // { return a.size() < b.size(); });
 	sort(rules_v2.begin(), rules_v2.end(), [](const vector<int> &a, const vector<int> &b)
-		 { return a.size() < b.size(); });
+		 { return a.at(0) < b.at(0); });
 }
