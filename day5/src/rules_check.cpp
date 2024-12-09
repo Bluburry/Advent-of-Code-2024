@@ -148,7 +148,6 @@ static void fix_page_order(vector<vector<int>> &rules_v2, vector<int> &pages)
 		if (!found)
 			continue;
 
-		int helper = pages.at(i);
 		found = false;
 
 		// h = i;
@@ -169,8 +168,6 @@ static void fix_page_order(vector<vector<int>> &rules_v2, vector<int> &pages)
 
 		if (found)
 			i = -1;
-		if (helper < 0)
-			cout << "wtf" << endl;
 	}
 } 
 
