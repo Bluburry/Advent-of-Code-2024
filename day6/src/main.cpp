@@ -12,15 +12,6 @@ int main(int argc, char **argv)
 	cout << "Advent day 6 (puzzle 1): " << GREEN << guard_movement(map, size_i, size_j) << RESET << endl;
 
 	for (int i = 0; i < size_i; i++)
-	{
-		for (int j = 0; j < size_j; j++)
-		{
-			cout << map[i][j];
-		}
-		cout << endl;
-	}
-
-	for (int i = 0; i < size_i; i++)
 		delete[] map[i];
 
 	delete[] map;

@@ -6,6 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <regex>
+#include <unistd.h>
 
 #define RESET "\033[0m"
 #define RED "\033[0;31m"
