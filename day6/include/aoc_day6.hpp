@@ -15,11 +15,13 @@
 #define BLUE "\033[0;34m"
 #define MAGENTA "\033[0;35m"
 #define CYAN "\033[0;36m"
+#define GUARD_LOOP_MAX 10000
 
 using namespace std;
 
 vector<string> map_helper(char *fl);
 char **map_parse(vector<string> &helper);
 int guard_movement(char **map, int size_i, int size_j);
+int guard_loop(char **map_og, char **map_alt, int size_i, int size_j);
 
 #endif 

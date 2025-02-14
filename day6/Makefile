@@ -3,8 +3,8 @@ C				= c++
 DEPENDENCIES	= include
 RM				= rm -rf
 NAME			= aoc6
-FILE_NAME		= input.txt
-# FILE_NAME		= input_test.txt
+# FILE_NAME		= input.txt
+FILE_NAME		= input_test.txt
 CFLAGS			= -W -Wall -Werror -Wextra -pedantic -g -I $(DEPENDENCIES)
 VG				= valgrind --leak-check=full -s --track-origins=yes --show-leak-kinds=all#--log-file=leaks.log
 
